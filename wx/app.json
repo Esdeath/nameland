@@ -1,0 +1,14 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#35495e",
+    "navigationBarTitleText": "NameLand",
+    "navigationBarTextStyle":"black",
+    "backgroundColor": "#fff",    
+    "enablePullDownRefresh": true
+  }
+}
