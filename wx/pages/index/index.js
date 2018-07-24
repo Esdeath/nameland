@@ -1,54 +1,76 @@
 //index.js
 //获取应用实例
-const app = getApp()
+var app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
+    toView: "",
+    motto: 'MiHome_Store',
     userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    indicatorDots: true,
+    autoplay: true,
+    interval: 3000,
+    duration: 100,
+    newgoods: [
+      {
+        "hg_pic": "http://ququabc.b0.upaiyun.com/nameland/girl.gif"
+      }, {
+        "hg_pic": "http://ququabc.b0.upaiyun.com/nameland/boy.gif"
+      }
+    ],
+    hotgoods: [{
+      "more_pic": "http://ququabc.b0.upaiyun.com/nameland/qm.gif"
+    }
+    ],
+    banner_list: [
+      {
+        "banner": [
+          {
+            "pic_url": "http://img09.yiguoimg.com/e/ad/2016/160825/585749448986042649_800x400.jpg",
+          },
+          {
+            "pic_url": "http://img11.yiguoimg.com/e/ad/2016/160927/585749449690947899_800x400.jpg",
+          },
+          {
+            "pic_url": "http://img14.yiguoimg.com/e/ad/2016/160923/585749449636290871_800x400.jpg",
+          },
+          {
+            "pic_url": "http://img13.yiguoimg.com/e/ad/2016/160914/585749449480315182_800x400.jpg",
+          },
+          {
+            "pic_url": "http://img14.yiguoimg.com/e/ad/2016/161010/585749449889390922_800x400.jpg",
+          }
+        ]
+      },
+      {
+        "banner": []
+      }
+    ]
   },
+  onPullDownRefresh: function () {
+    console.log('onPullDownRefresh')
+  },
+  scroll: function (e) {
+    if (this.data.toView == "top") {
+      this.setData({
+        toView: ""
+      })
+    }
+  },
+
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
+  tap: function () {
     this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+      toView: "top"
     })
+  },
+  onLoad: function () {
+    console.log("nameland")
+
   }
 })
